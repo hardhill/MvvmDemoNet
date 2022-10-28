@@ -26,5 +26,15 @@ namespace MvvmDemoNet
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                this.DragMove();
+            }
+        }
+
+       
     }
 }

@@ -8,26 +8,38 @@
         xmlns:converter="clr-namespace:MvvmDemoNet.Converters"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
-        Title="MVVM DEMO .NET" Height="400" Width="480">
+        Title="MVVM DEMO .NET" Height="400" Width="480" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        MouseDown="Window_MouseDown" ResizeMode="NoResize">
     <Window.Resources>
         <converter:IndexToColor x:Key="Index2Color"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="2" Height="30">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF071F80" Offset="1"/>
+                    <GradientStop Color="#FFBEE3E4" Offset="0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Grid.Column="2" Height="Auto" Width="Auto" HorizontalAlignment="Right" Margin="10,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Command="{Binding CloseWindowCommand, Mode=OneWay}">
+                <Image Source="/cancel_24px.png" Stretch="None" Cursor="Hand"/>
+            </Button>
+        </Border>
         
-        <Slider Margin="20" Minimum="0" Maximum="100" Value="{Binding IndexColor}" />
-        <Label Grid.Column="2" Content="{Binding IndexColor}" VerticalAlignment="Center" Margin="20,0"/>
+        <Slider Margin="20" Minimum="0" Maximum="100" Value="{Binding IndexColor}" Grid.Row="1" />
+        <Label Content="{Binding IndexColor}" VerticalAlignment="Center" Margin="20,0" Grid.Row="1" Grid.Column="1"/>
 
-        <!--Background="{Binding IndexColor, Converter={StaticResource Index2Color}}"-->
         <Border Grid.Row="2" Grid.ColumnSpan="2" Background="{Binding IndexColor, Converter={StaticResource Index2Color}}"  />
-        
+
     </Grid>
 </Window>
